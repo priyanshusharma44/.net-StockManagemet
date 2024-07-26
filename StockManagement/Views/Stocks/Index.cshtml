@@ -1,0 +1,123 @@
+﻿@model IEnumerable<StockManagement.Models.Stock>
+
+@{
+    ViewData["Title"] = "Stock";
+}
+
+
+
+<div class="container">
+    <h1>Stock</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Product.ProductName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Quantity)</th>
+                <th>@Html.DisplayNameFor(model => model.First().DateReceived)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ExpiryDate)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateReceived)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ExpiryDate)</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Edit" asp-route-id="@item.StockId" class="btn btn-warning">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.StockId" class="btn btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.StockId" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border: 1px solid #dee2e6; /* Border for cells */
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6; /* Thicker border for thead */
+        }
+
+    .table-bordered {
+        border: 1px solid #dee2e6; /* Border for the entire table */
+    }
+
+    .btn {
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        border-radius: 0.25rem;
+        transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: blue;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #4e555b;
+        }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 0.2rem;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+</style>
